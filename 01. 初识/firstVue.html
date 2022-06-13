@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script type="text/javascript" src="../js/vue.js"></script>
+</head>
+
+<body>
+    <div id="root">
+        <h1>{{name}}</h1>
+    </div>
+
+    <script type="text/javascript">
+        // 创建Vue实例
+        // el: 是element的意思
+        // vue实例与上面的id=root的容器
+        // el可以是css的id,class选择器
+        // data是供el所制定的容器使用
+        // 整个的流程
+        // Vue 在解析执行时，会将dom中的文本进行替换。
+        // 容器与Vue的实例是”一一绑定“的。不能一对多，也不能多对一。
+        // 容器里的{{表达式}}
+        // data中的数据发生变化，页面就会发生变化。
+         new Vue({
+            el:"#root",
+            data: {
+                name:"hell 你好2"
+            }
+        })
+
+    </script>
+</body>
+
+</html>

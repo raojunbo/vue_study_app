@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script type="text/javascript" src="../js/vue.js"></script>
+    <!-- div的class与style的区别
+        1. class样式
+            a.
+        2. style样式
+            a.样式对象
+     -->
+
+    <!-- <style>
+        /* css的class样式 */
+        .basic {
+
+        }
+        .happy {
+            background-color: red;
+            border-width: 1;
+        }
+        .sad {
+            background-color: green;
+        }
+        .normal {
+            background-color: lightblue;
+        }
+
+        .atguigu1 {
+            border-width: 10px solid #000;
+            border-style: solid;
+            border-color: #98bf21;
+        }
+        .atguigu2 {
+            font-size: 40px;
+        }
+    </style> -->
+</head>
+<body>
+    <!-- <div id="root">
+        <!-- 样式是动态时 所以可以采用vue的绑定机制，适用于样式的类名不确定，需要动态决定。-->
+        <div class="basic" :class="mood" @click="changeMood">
+            我是一个单独的样式
+        </div>
+        <div class="basic" :class="array">
+            绑定class样式数组绑定法
+        </div>
+        <div class="basic" :class="object">
+            绑定class样式的对象绑定法
+        </div>
+
+        <div :style="styleObject ">
+           绑定style的样式
+        </div>
+    </div> -->
+   
+    <script>
+        vm = new Vue({
+            el:"#root",
+            data: {
+                name: "rjb",
+                mood: "normal",
+                array:["atguigu1","atguigu2"],
+                object: {
+                    atguigu1: true,
+                    atguigu2: false
+                },
+                // 里面的属性都是style里的。
+                styleObject: {
+                    fontSize:"40px"
+                }
+            },
+            methods: {
+                changeMood(){
+                    const array= ["normal", "happy","sad"]
+                    var select =  Math.floor( Math.random() * 3)
+                    this.mood = array[select]
+                }
+            },
+        }) 
+    </script>
+</body>
+</html>

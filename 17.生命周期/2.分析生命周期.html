@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script type="text/javascript" src="../js/vue.js"></script>
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="root">
+        <h2>当前的n值是{{n}}</h2>
+        <h2 :style="{opacity: opacity}">欢迎学习Vue</h2>
+        <button @click="stoptimer">点位停止变化</button>
+    </div>
+    <script>
+        const vm = new Vue({
+            el: '#root',
+            data() {
+                return {
+                    n: 1,
+                    opacity: 1
+                }
+            },
+            methods: {
+                del() {
+                    vm.$destory()
+                },
+                stoptimer() {
+                    vm.$destory()
+                }
+            },
+            /* 
+                1. 创建
+                2. 挂载
+                3. 更新
+                4. 销毁
+            */
+
+            beforeCreate() {
+                console.log('beforeCreate')
+                console.log(this)
+            },
+            created() {
+                console.log('created')
+                console.log(this)
+            },
+            beforeMount() {
+                console.log('beforeMount')
+            },
+            mounted() {
+                // 真实dom生成
+                this.timer = setInterval(() => {
+                    vm.opacity -= 0.1
+                    if (vm.opacity <= 0) {
+                        vm.opacity = 1
+                    }
+                }, 16);
+            },
+            beforeUpdate() {
+                // 数据变更了，页面没有变更
+            },
+            updated() {
+                // 数据与页面保持同步了
+            },
+            beforeDestroy() {
+                // vm销毁
+                clearInterval(this.timer)
+            },
+            destroyed() {
+
+            },
+        })
+    </script>
+</body>
+
+</html>

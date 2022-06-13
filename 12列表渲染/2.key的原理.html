@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script type="text/javascript" src="../js/vue.js"></script>
+
+</head>
+<!-- 
+    react.vue中的key的作用。
+    key是虚拟dom对象的标识。
+    1. 旧的
+    2. 需要注意点：
+        用index作为key可能引发问题
+    3. 如何选择key
+        最好使用每个数据能标识的唯一标识。
+ -->
+<body>
+    <div id="root">
+        <h2>人员信息((遍历数组)</h2>
+        <button @click="add">添加一个老刘</button>
+        <h3>用index作为key(不建议这样写)</h3>
+        <ul>
+            <li v-for="(p, index) in persons" :key="index">
+                {{p.name}}-{{p.age}}
+                <input type="text">
+            </li>
+        </ul>
+        <h3>用p.id作为key</h3>
+        <ul>
+            <li v-for="(p, index) in persons" :key="p.id">
+                {{p.name}}-{{p.age}}
+                <input type="text">
+            </li>
+        </ul>
+    </div>
+    <script>
+        new Vue({
+            el: "#root",
+            data: {
+                persons: [
+                    { id: "1", name: "张三", age: 20 },
+                    { id: "2", name: "李四", age: 22 },
+                    { id: "3", name: "王五", age: 30 },
+                ]
+            },
+            methods: {
+                add() {
+                    const p = {id:'4',name:"老刘", age:100}
+                    // 放到最前方
+                    this.persons.unshift(p)
+                }
+            },
+        })
+    </script>
+</body>
+
+</html>

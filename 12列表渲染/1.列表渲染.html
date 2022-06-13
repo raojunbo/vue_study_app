@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script type="text/javascript" src="../js/vue.js"></script>
+
+</head>
+<body>
+    <!-- v-for指令
+        1. 
+     -->
+    <div id="root">
+        <h2>人员信息((遍历数组)</h2>
+        <ul>
+            <!-- key 在v-for里不报错，但最好设置:key给每个li的元素。 -->
+            <li v-for="p in persons" :key="p.id">
+                {{p.name}}-{{p.age}}
+            </li>
+        </ul>
+        <br>
+        <ul>
+            <li v-for="(p,index) in persons" :key="p.id">
+                {{p.name}}-{{p.age}}-{{index}}
+            </li>
+        </ul>
+        <br>
+        <h2>汽车信息(遍历对象)</h2>
+        <ul>
+            <li v-for="(value,k) of car" :key="k">
+                {{k}}--{{value}}
+            </li>
+            <!-- <li v-for="(p,index) in persons" :key="p.id">
+                {{p.name}}-{{p.age}}-{{index}}
+            </li> -->
+        </ul>
+        <h3>遍历字符串</h3>
+        <ul>
+           <li v-for="(char, index) of str" ::key="index">
+            {{char}} - {{index}}
+           </li>
+        </ul>
+    </div>
+    <script>
+        new Vue({
+            el:"#root",
+            data: {
+                persons: [
+                    {id:"1",name:"张三", age:"20"},
+                    {id:"2",name:"李四",age:"22"},
+                    {id:"3",name:"王五",age:"30"},
+                ],
+                car: {
+                    name:"奥迪A8",
+                    price:"70万",
+                    color:"黑色"
+                },
+                str:"hell word"
+            }
+        })
+    </script>
+</body>
+</html>

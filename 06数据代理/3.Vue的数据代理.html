@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script type="text/javascript" src="../js/vue.js"></script>
+</head>
+
+<body>
+    <div id="root">
+        <h1>{{name}}</h1>
+        <h1>{{address}}</h1>
+    </div>
+
+    <script type="text/javascript">
+    // vm对象被放到了window对象上。
+     var vm = new Vue({
+         el:"#root",
+         data: {
+            name: "rjb" ,
+            address:"瑞琪家园"
+         }
+     })
+     var vm1 = new Vue({
+         el:"#root",
+         data: {
+            name: "rjb" ,
+            address:"瑞琪家园"
+         }
+     })
+     // vm对象的name,address是通过Object.defineProperty设置的。
+
+    </script>
+
+</body>
+
+</html>

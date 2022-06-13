@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script type="text/javascript" src="../js/vue.js"></script>
+
+</head>
+
+<body>
+    <div id="root">
+        <h2>当前的n值是<span v-text="n"></span></h2>
+        <h2> 放大10倍后的n值是<span v-big="n"></span></h2>
+        <button @click="n++">点击n+1</button>
+    </div>
+
+    <script>
+        new Vue({
+            el: "#root",
+            data() {
+                return {
+                    n: 1
+                }
+            },
+            directives: {
+                // big函数何时回被调用呢？
+                // 指令所在的模板重新解析时。会执行这个big。
+                big(element, binding) {
+                    // a是真实的dom
+                    // b是该指令的值
+                    // console.log(element)
+                    // console.log(binding)
+                    element.innerText = binding.value * 10
+                }
+            }
+        })
+    </script>
+
+</body>
+
+</html>

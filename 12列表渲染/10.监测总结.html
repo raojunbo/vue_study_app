@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script type="text/javascript" src="../js/vue.js"></script>
+</head>
+<!-- 
+    Vue如何监测对象的改变。
+    1. Vue会监测所有层次的数据
+ 
+    2. 如何监测对象中的数据?
+       给data里的属性添加setter,getter方法。
+    3. 如何更新数组中的数据呢？
+        包裹原生更新数组的方法.所以使用数组的push(),pop(),unshift(),shift()方法。
+    4. 追加可监听属性
+      Vue.set(this.student,'sex',"女")
+    5.  注意
+        Vue不能再根对象上添加
+        Vue.set(this.student,'sex',"女")
+ -->
+
+<body>
+    <div id="root">
+        <h1>学生信息</h1>
+        <button @click="student.age++">年龄+1岁</button>
+        <br>
+        <button @click="addSex">添加性别属性</button>
+        <button @click="student.sex = '男'">修改性别属性</button>
+        <h3>姓名:{{student.name}}</h3>
+        <h3>年龄:{{student.age}}</h3>
+        <h3 v-if="student.sex">性别:{{student.sex}}</h3>
+        <br>
+        <h1>朋友列表</h1>
+        <button @click="addFriendAtFirst">在列表首页添加一个朋友</button>
+        <br>
+        <button @click="updateFirstFriend">修改地一个朋友的名字为:张三</button>
+        <ul>
+            <li v-for="f in student.friends ">
+                {{f.name}}-{{f.age}}
+            </li>
+        </ul>
+        <br>
+        <h1>爱好列表</h1>
+        <input type="text" placeholder="爱好名字" v-model="student.hoby">
+        <button @click="addHoby">添加一个爱好</button>
+        <br>
+        <button @click="updateFirstHoby">修改第一个爱好为:开车</button>
+        <br>
+        <ul>
+            <li v-for="f in student.hobys ">
+                {{f}}
+            </li>
+        </ul>
+    </div>
+
+    <script>
+        const vm = new Vue({
+            el: "#root",
+            data: {
+                name: "北京大学",
+                address: '北京',
+                student: {
+                    name: "tom",
+                    age: 10,
+                    hoby: "",
+                    hobys: [
+                        "喝酒",
+                        "抽烟",
+                        "打牌"
+                    ],
+                    friends: [
+                        { name: "jerry", age: 35 },
+                        { name: "tony", age: 36 },
+                    ]
+                }
+            },
+            methods: {
+                addSex() {
+                    Vue.set(this.student, 'sex', "女")
+                },
+                addHoby() {
+                    this.student.hobys.push(this.student.hoby)
+                },
+                updateFirstHoby() {
+                    this.student.hobys.splice(0, 1, "开车")
+                },
+                addFriendAtFirst() {
+                    const s = { name: "rjb", age: 35 }
+                    // 在首部添加一个元素
+                    this.student.friends.unshift(s)
+                },
+                updateFirstFriend() {
+                    // 如果直接修改friends[0]是不能响应的
+                    this.student.friends[0].name = "张三"
+                }
+            },
+        })
+    </script>
+
+</body>
+
+</html>

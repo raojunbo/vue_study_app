@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script type="text/javascript" src="../js/vue.js"></script>
+
+</head>
+
+<body>
+    <div id="root">
+        <h2>人员信息((遍历数组)</h2>
+        <input type="text" placeholder="请输入数据" v-model="keyword">
+        <ul>
+            <li v-for="p in filterpersons" :key="p.id">
+                {{p.name}}-{{p.age}}-{{p.sex}}
+            </li>
+        </ul>
+    </div>
+    <script>
+        // 用watch实现
+        // new Vue({
+        //     el: "#root",
+        //     data: {
+        //         persons: [
+        //             { id: "1", name: "马冬梅", age: 20, sex: "女" },
+        //             { id: "2", name: "周冬雨", age: 22, sex: "女" },
+        //             { id: "3", name: "周杰伦", age: 30, sex: "女" },
+        //             { id: "4", name: "温兆伦", age: 30, sex: "女" },
+        //         ],
+        //         filterpersons: [],
+        //         keyword: ""
+        //     },
+        //     watch: {
+        //         keyword: {
+        //             immediate:true,
+        //             handler(newValue) {
+        //                 // filters会生成新的数组
+        //                 var searchPerson = this.persons.filter((p) => {
+        //                     return p.name.indexOf(newValue) != -1
+        //                 })
+        //                 this.filterpersons = searchPerson
+        //             }
+        //         }
+        //     }
+        // })
+
+        // 用compute实现
+        new Vue({
+            el: "#root",
+            data: {
+                persons: [
+                    { id: "1", name: "马冬梅", age: 20, sex: "女" },
+                    { id: "2", name: "周冬雨", age: 22, sex: "女" },
+                    { id: "3", name: "周杰伦", age: 30, sex: "女" },
+                    { id: "4", name: "温兆伦", age: 30, sex: "女" },
+                ],
+                keyword: ""
+            },
+            computed: {
+                // keywork发生变化时。会自动执行计算属性的函数。
+                filterpersons() {
+                    var searchPerson = this.persons.filter((p) => {
+                        return p.name.indexOf(this.keyword) != -1
+                    })
+                    return searchPerson
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

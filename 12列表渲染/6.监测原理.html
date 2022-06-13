@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script type="text/javascript" src="../js/vue.js"></script>
+</head>
+<!-- 
+    Vue如何监测对象的改变。
+    1. 加工data，给data里的属性添加setter,getter方法。
+
+    2. 
+ -->
+<body>
+    <div id="root">
+        <h2>学校名词:{{name}}</h2>
+        <2>学校地址{{address}}</2>
+    </div>
+
+    <script>
+       const vm =  new Vue({
+            el: "#root",
+            data: {
+                name:"",
+                address:'',
+                persons: [
+                    { id: "1", name: "马冬梅", age: 34, sex: "女" },
+                    { id: "2", name: "周冬雨", age: 22, sex: "女" },
+                    { id: "3", name: "周杰伦", age: 19, sex: "女" },
+                    { id: "4", name: "温兆伦", age: 30, sex: "女" },
+                ],
+            },
+            methods: {
+                updateMei() {
+                    // 这里Vue并没有监测到数据的变更。
+                    this.persons[0] = { id: "1", name: "马老师", age: 34, sex: "女" }
+                }
+            },
+        })
+    </script>
+
+</body>
+
+</html>

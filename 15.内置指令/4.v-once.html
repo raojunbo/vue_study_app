@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script type="text/javascript" src="../js/vue.js"></script>
+
+</head>
+<!-- v-one
+    在动态渲染时，只读一次。也就只想要初始化之.
+ -->
+<body>
+    <div id="root">
+        <h2 v-once>初始化的{{n}}的值</h2>
+        <h2>初始化的n的值{{n}}</h2>
+        <button @click="n++">点击我n + 1</button>
+    </div>
+    <script>
+        vm = new Vue({
+            el:"#root",
+            data() {
+                return {
+                    n:1
+                }
+            },
+        })
+    </script>
+</body>
+</html>

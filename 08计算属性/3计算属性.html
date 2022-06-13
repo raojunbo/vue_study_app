@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script type="text/javascript" src="../js/vue.js"></script>
+</head>
+<body>
+    <div id="root">
+        姓<input type="text" v-model="firstName">
+        <br>
+        名<input type="text" v-model="lastName">
+        <br>
+        姓名<span>{{fullName}}</span>
+        <!-- <button @click="fullName">点击我</button> -->
+    </div>
+    <script type="text/javascript">
+        vm = new Vue({
+            el: "#root",
+            data: {
+                firstName: "rao",
+                lastName:"junbo"
+            },
+            computed: {
+                // 计算属性fullName
+                fullName: {
+                    // 计算属性带缓冲
+                    // get调用的时机
+                    // 1. 初次读取fullName时。
+                    // 2. 所依赖的数据发生变化时
+                    get() {
+                        // 此处的this是Vue
+                        return this.firstName + "-" + this.lastName
+                    },
+                    set(value) {
+                        console.log(value)
+                        // const 块级作用域
+                        const arr = value.split("-")
+                        this.firstName = arr[0]
+                        this.lastName = arr[1]
+                    }
+                }
+            },
+            methods: {
+                showInfo(e) {
+                    // if (e.keyCode !== 13) {
+                        // return
+                    // }
+                    console.log(e)
+                }
+            }
+        })
+    </script>
+</body>
+</html>

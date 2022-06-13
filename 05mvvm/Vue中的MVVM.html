@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script type="text/javascript" src="../js/vue.js"></script>
+
+</head>
+<body>
+    <div id="root">
+        <h2>你好{{name}}</h2>
+    </div>
+    
+    <script type="text/javascript">
+        // data中的属性最终都会出现在Vue的对象的属性上。
+        // 模块可以访问Vuew的对象身上的任意属性。
+        const vv = new Vue({
+            el:"#root",
+            data: function() {
+                // 此处的this表示的是Vue的实例对象。
+                console.log(this)
+                return {
+                    name:"rjb"
+                }
+            }
+        })
+    </script>
+</body>
+</html>

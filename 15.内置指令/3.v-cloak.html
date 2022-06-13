@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        [v-cloak] {
+            display: none;
+        }
+    </style>
+</head>
+<!-- v-cloak 是一个属性.
+    主要配合样式，在js代码未回来时，显示在页面的上东西的样式。
+ -->
+<body>
+    <div id="root">
+        <h2 v-cloak>{{name}}</h2>
+    </div>
+    <script type="text/javascript" src="../js/vue.js"></script>
+</body>
+</html>

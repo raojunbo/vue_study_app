@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script type="text/javascript" src="../js/vue.js"></script>
+
+</head>
+<body>
+    <div id="root">
+        <!-- v-show的底层实现就是display = none -->
+        <h2 v-show="vshow">
+            欢迎到来{{name}}
+        </h2>
+        <!-- v-if的底层是没有节点 -->
+        <h2 v-if="vifshow">
+            欢迎到来{{name}}
+        </h2>
+        <!-- v-if -->
+        <div v-if="n === 1">Angular</div>
+        <div v-if="n === 2">Rect</div>
+        <div v-if="n === 3">VUE</div>
+        <button @click="buttonClick">1点击我切换前段框架</button>
+        
+        <!-- v-if 与v-else-if的指令必须是相连的，结构不能被打断 -->
+        <div v-if="n === 1">Angular</div>
+        <div v-else-if="n === 2">Rect</div>
+        <div v-else-if="n === 3">VUE</div>
+        <div v-else>啥也不是</div>
+        <button @click="buttonClick">2点击我切换前段框架</button>
+
+       <template v-if="n === 1">
+        <div>Angular</div>
+        <div>Rect</div>
+        <div>VUE</div>
+       </template>
+    </div>
+    <script>
+        new Vue({
+            el:"#root",
+            data: {
+                name: "rjb",
+                vshow: true,
+                vifshow: false,
+                n:1
+            },
+            methods: {
+                buttonClick() {
+                    this.n += 1
+                    // this.n = this.n % 4
+                }
+            },
+        }) 
+    </script>
+</body>
+</html>

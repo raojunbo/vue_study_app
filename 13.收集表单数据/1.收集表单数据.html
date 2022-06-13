@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script type="text/javascript" src="../js/vue.js"></script>
+</head>
+<!-- 
+    v-model.trim
+    v-mode.lazy
+    v-model.number
+    radio 要配置value
+    checkbox 收集的是checked，要配置value，需要用数组收集
+ -->
+<body>
+    <div id="root">
+        <!-- <form> -->
+        账号<input type="text" v-model.trim="account">
+        <br>
+        <br>
+        密码<input type="password" v-model="password">
+        <br>
+        <br>
+        性别
+        男<input type="radio" name="sex" v-model="sex" value="male">
+        女<input type="radio" name="sex" v-model="sex" value="fmale">
+        年龄
+        <input type="number" v-model.number="age">
+        <br>
+        爱好
+        学习<input type="checkbox" v-model="hoby" value="study">
+        打游击<input type="checkbox" v-model="hoby" value="game">
+        吃饭<input type="checkbox" v-model="hoby" value="eat">
+        <input type="checkbox">
+        <br>
+        <br>
+        <select v-model="city">
+            <option value="请选择校区">请选择校区</option>
+            <option value="北京">北京</option>
+            <option value="上海">上海</option>
+            <option value="深圳">深圳</option>
+        </select>
+        <br>
+        其他信息
+        <br>
+        <textarea v-model.lazy="other">
+
+        </textarea>
+        <br>
+        <input type="checkbox" v-model="agree">
+        阅读并接收用户协议<a href="https://www.baidu.com">《用户协议》</a>
+        <br>
+        <button @click="summit">提交</button>
+        <!-- </form> -->
+    </div>
+    <script>
+        new Vue({
+            el: "#root",
+            data() {
+                return {
+                    account: "",
+                    password: "",
+                    sex: "male",
+                    age: 10,
+                    hoby: [
+
+                    ],
+                    city: "北京",
+                    other: "",
+                    agree: true
+                }
+            },
+            methods: {
+                summit() {
+                    var json = JSON.stringify(this._data)
+                    console.log(json)
+                }
+            },
+        })
+    </script>
+</body>
+
+</html>
