@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script type="text/javascript" src="../js/vue.js"></script>
+</head>
+
+<body>
+    <div id="root">
+        <h1>{{msg}}</h1>
+        <school></school>
+        <!-- 也可以写成单标签。单标签最好在脚手架环境上使用 -->
+        <school/>
+    </div>
+    <script>
+        // 定义组件
+        const sch = Vue.extend({
+            name:"组件名",
+            template:`
+            <div>
+                <h2>学生名字{{name}}</h2>
+                <h2>学生地址{{address}}</h2>
+            </div>`,
+            data() {
+                return {
+                    name:"北京大学",
+                    address:"北京"
+                }
+            },
+        })
+        // 简写（最终会在注册时，被补上Vue.extend）
+        const sch2 = {
+            name:"组件名",
+            template:`
+            <div>
+                <h2>学生名字{{name}}</h2>
+                <h2>学生地址{{address}}</h2>
+            </div>`,
+            data() {
+                return {
+                    name:"北京大学",
+                    address:"北京"
+                }
+            },
+        }
+        // 1. 一个档次：首字母小写 或者 首字母大写。
+        // 2. 多个单词: 大驼峰（只能在脚手架中使用） 或者  像my-school
+        // 注册组件
+        // 在一个vm里可以有多个组件。所有的组件都在一个vm里。
+        const vm = new Vue({
+            el: "#root",
+            data() {
+                return {
+                    msg: "欢迎学习Vue"
+                }
+            },
+            // 注册组件
+            components: {
+                school:sch
+            }
+        })
+    </script>
+
+</body>
+
+</html>

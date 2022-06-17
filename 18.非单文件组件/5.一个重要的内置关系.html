@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script type="text/javascript" src="../js/vue.js"></script>
+</head>
+<!-- 
+    VueComponet.prototype.__proto__ === Vue.prototype
+ -->
+
+<body>
+    <div id="root">
+        <school></school>
+    </div>
+    <script>
+        // 定义一个构造函数
+        // function Demo() {
+        //     this.a = 1
+        //     this.b = 2
+        // }
+        // // 创建一个demo的实例对象
+        // const d = new Demo()
+
+        // console.log(Demo.prototype) // 显示原型属性
+        // console.log(d.__proto__) // 隐式原型属性
+
+        // console.log(Demo.prototype == d.__proto__)
+        // // 通过拿到原型对象。
+        // Demo.prototype.x = 99
+        // console.log(d.__proto__.x)
+        Vue.prototype.x = 90
+        const school = Vue.extend({
+            name: "myschool",
+            template: `
+            <div>
+                <h2>学校名字{{name}}</h2>
+                <h2>学校地址{{address}}</h2>
+                <button @click="showName">点我提示学校名</button>
+            </div>`,
+            data() {
+                return {
+                    name: "北京大学",
+                    address: "北京"
+                }
+            },
+            methods: {
+                showName() {
+                    // 对象的prototype是该对象的原型对象
+                    // 实例对象的原型对象通过__proto
+                    // 构造函数（类）的原型对象通过proototype
+                    // 这里的this 是VueComponet的对象。
+                    console.log(this.__proto__.x)
+                }
+            }
+        })
+        const vm = new Vue({
+            el: "#root",
+            data() {
+                return {
+                    msg: "你好"
+                }
+            },
+            components: {
+                school
+            }
+        })
+    </script>
+</body>
+
+</html>

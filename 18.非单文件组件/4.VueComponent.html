@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script type="text/javascript" src="../js/vue.js"></script>
+</head>
+
+<body>
+    <div id="root">
+        <school></school>
+        <hello></hello>
+    </div>
+    <script>
+        // 定义组件
+        const school = Vue.extend({
+            name: "myschool",
+            template: `
+            <div>
+                <h2>学校名字{{name}}</h2>
+                <h2>学校地址{{address}}</h2>
+                <button @click="showName">点我提示学校名</button>
+            </div>`,
+            data() {
+                return {
+                    name: "北京大学",
+                    address: "北京"
+                }
+            },
+            methods: {
+                showName() {
+                    // this 是VueComponet的实例对象。
+                    console.log(this)
+                }
+            }
+        })
+        const test = Vue.extend({
+            template:` <h1>{{msg}}</h1>`,
+            data() {
+                return {
+                    msg:"test"
+                }
+            },
+        })
+        // 创建组件
+        const hello = Vue.extend({
+            template:` 
+            <h1>{{msg}}</h1>
+            <test></test>
+            `,
+            data() {
+                return {
+                    msg:"hello nihao"
+                }
+            },
+            components: {
+                test
+            }
+        })
+        // 1. 从这里可以看出school实际上就是一个构造函数。
+        // 2. 在解析模板时，<school></shool> Vue解析时会帮助我们创建school组件的实例对象。
+        // 3. VueComponet
+        // 4. 关于this指针
+        // data, method,等等系VueComponet
+        console.log('@',school)
+        console.log('@',hello)
+
+        // 创建vm
+        const vm = new Vue({
+            el: "#root",
+            components: {
+                school,
+                hello
+            }
+        })
+        // vm 与vc
+        // vm 有el, vc没有el
+    </script>
+
+</body>
+
+</html>
