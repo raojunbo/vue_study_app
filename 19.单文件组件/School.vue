@@ -6,8 +6,9 @@
   </div>
 </template>
 <script>
-
-export default  {
+//最完整的简写
+export default {
+  name: "School",
   data() {
     return {
       name: "北京大学",
@@ -16,11 +17,10 @@ export default  {
   },
   methods: {
     showName() {
-     alert("来了")
+      alert("来了");
     }
   }
-}
-
+};
 </script>
 
 <style>
